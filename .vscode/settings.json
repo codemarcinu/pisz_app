@@ -1,0 +1,8 @@
+{
+  "python.analysis.extraPaths": [
+    "/home/marcin/Dokumenty/pisz_app/.venv/lib/python3.13/site-packages"
+  ],
+  "python.autoComplete.extraPaths": [
+    "/home/marcin/Dokumenty/pisz_app/.venv/lib/python3.13/site-packages"
+  ]
+}
