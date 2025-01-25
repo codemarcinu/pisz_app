@@ -88,26 +88,31 @@ Aplikacja obsługuje następujące jednostki miary, sklepy oraz kategorie produk
    git clone <repo-url>
    ```
 
-2. Zainstaluj zależności backendu:
+2. Skonfiguruj zmienne środowiskowe:
+   - Utwórz plik .env w katalogu zakupy_app na podstawie .env.example
+   - Ustaw odpowiednie wartości dla SECRET_KEY, DATABASE_URL i TEST_DATABASE_URL
+
+3. Zainstaluj zależności backendu:
 
    ```bash
+   cd zakupy_app
    pip install -r requirements.txt
    ```
 
-3. Zainstaluj zależności frontendu:
+4. Zainstaluj zależności frontendu:
 
    ```bash
    cd frontend
    npm install
    ```
 
-4. Skonfiguruj bazę danych (pliki migracji zostaną dostarczone).
+5. Skonfiguruj bazę danych (pliki migracji zostaną dostarczone).
 
-5. Uruchom aplikację:
+6. Uruchom aplikację:
 
    - Backend:
      ```bash
-     python app.py
+     flask run
      ```
    - Frontend:
      ```bash

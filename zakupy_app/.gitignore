@@ -1,0 +1,19 @@
+# Środowisko wirtualne
+venv/
+.env
+logs/
+
+# Cache Pythona
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Pytest cache
+.pytest_cache/
+
+# Migracje bazy danych (opcjonalnie)
+migrations/versions/
+
+# IDE
+.vscode/
+.idea/
