@@ -1,4 +1,4 @@
-from . import create_app
+from zakupy_app import create_app
  
  
  

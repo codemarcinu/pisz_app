@@ -1,4 +1,4 @@
-from extensions import db
+from zakupy_app.extensions import db
 
 class Kategorie(db.Model):
     id = db.Column(db.Integer, primary_key=True)

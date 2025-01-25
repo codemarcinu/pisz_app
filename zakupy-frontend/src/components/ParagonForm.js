@@ -1,13 +1,22 @@
-import React, { useState } from 'react';
-import { TextField, Button, Container } from '@mui/material';
-import { addParagon } from '../services/api';
+import React, { useState, useEffect } from 'react';
+import { TextField, Button, Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { addParagon, fetchParagony } from '../services/api';
 
 const ParagonForm = () => {
+  const [paragony, setParagony] = useState([]);
   const [formData, setFormData] = useState({
     sklep: '',
     data: '',
     cena: '',
   });
+
+  useEffect(() => {
+    const pobierzParagony = async () => {
+      const response = await fetchParagony();
+      setParagony(response.data);
+    };
+    pobierzParagony();
+  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -17,6 +26,8 @@ const ParagonForm = () => {
     e.preventDefault();
     try {
       await addParagon(formData);
+      const response = await fetchParagony();
+      setParagony(response.data);
       alert('Paragon zapisany!');
     } catch (error) {
       console.error('Błąd przy zapisywaniu paragonu:', error);
@@ -25,6 +36,31 @@ const ParagonForm = () => {
 
   return (
     <Container>
+      <TableContainer component={Paper} sx={{ marginBottom: 4 }}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Data</TableCell>
+              <TableCell>Sklep</TableCell>
+              <TableCell align="right">Cena</TableCell>
+              <TableCell align="right">Rabat</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {paragony.map((paragon) => (
+              <TableRow key={paragon.id}>
+                <TableCell>
+                  {new Date(paragon.data).toLocaleDateString()}
+                </TableCell>
+                <TableCell>{paragon.sklep}</TableCell>
+                <TableCell align="right">{paragon.laczna_cena.toFixed(2)} zł</TableCell>
+                <TableCell align="right">{paragon.rabat.toFixed(2)} zł</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+
       <form onSubmit={handleSubmit}>
         <TextField
           label="Sklep"
