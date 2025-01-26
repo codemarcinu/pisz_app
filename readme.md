@@ -74,6 +74,24 @@ Aplikacja obsługuje następujące jednostki miary, sklepy oraz kategorie produk
 - Frontend: React + Material-UI.
 - Baza danych: MySQL.
 
+## Struktura projektu
+
+```
+.
+├── config.py
+├── migrate_structure.py
+├── readme.md
+├── structure.txt
+├── app/
+├── docs/
+├── frontend/
+├── instance/
+├── logs/
+├── migrations/
+├── scripts/
+└── tests/
+```
+
 ## Wymagania systemowe
 
 - Python 3.9+
@@ -89,16 +107,14 @@ Aplikacja obsługuje następujące jednostki miary, sklepy oraz kategorie produk
    ```
 
 2. Skonfiguruj zmienne środowiskowe:
-   - Utwórz plik .env w katalogu zakupy_app na podstawie .env.example
+   - Utwórz plik .env w katalogu app na podstawie .env.example
    - Ustaw odpowiednie wartości dla SECRET_KEY, DATABASE_URL i TEST_DATABASE_URL
-
 3. Zainstaluj zależności backendu:
 
    ```bash
-   cd zakupy_app
+   cd app
    pip install -r requirements.txt
    ```
-
 4. Zainstaluj zależności frontendu:
 
    ```bash
@@ -123,7 +139,7 @@ Aplikacja obsługuje następujące jednostki miary, sklepy oraz kategorie produk
 
 ### Etap 1: Projektowanie
 
-1. Zebranie wymagań (ukończone).
+1. Zebranie wymagań (w toku).
 2. Projekt bazy danych:
    - Tabele: Produkty, Kategorie, Paragony, Posiłki.
 3. Stworzenie prototypu interfejsu użytkownika (Figma lub inny).
@@ -169,4 +185,3 @@ Aplikacja obsługuje następujące jednostki miary, sklepy oraz kategorie produk
    - Zoptymalizowanie interfejsu pod urządzenia mobilne.
 
 Jeśli masz jakieś uwagi lub pomysły na dodatkowe funkcje, daj znać!
-
