@@ -1,0 +1,9 @@
+Metadata-Version: 2.2
+Name: zakupy_app
+Version: 0.1
+Requires-Dist: Flask
+Requires-Dist: Flask-SQLAlchemy
+Requires-Dist: Flask-Migrate
+Requires-Dist: Flask-CORS
+Requires-Dist: mysqlclient
+Dynamic: requires-dist

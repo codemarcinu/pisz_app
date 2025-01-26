@@ -25,6 +25,10 @@ def create_app(config_class=Config, test_config=None):
     db.init_app(app)
     migrate.init_app(app, db)
     
+    # Upewnij się, że aplikacja jest w kontekście
+    with app.app_context():
+        db.create_all()
+    
     # Rejestracja blueprintów
     from .routes import main_bp
     app.register_blueprint(main_bp)
