@@ -12,8 +12,13 @@ const ParagonForm = () => {
 
   useEffect(() => {
     const pobierzParagony = async () => {
-      const response = await fetchParagony();
-      setParagony(response.data);
+      try {
+        const response = await fetchParagony();
+        setParagony(Array.isArray(response.data) ? response.data : []);
+      } catch (error) {
+        console.error('Błąd podczas pobierania paragonów:', error);
+        setParagony([]);
+      }
     };
     pobierzParagony();
   }, []);
@@ -27,7 +32,7 @@ const ParagonForm = () => {
     try {
       await addParagon(formData);
       const response = await fetchParagony();
-      setParagony(response.data);
+      setParagony(Array.isArray(response.data) ? response.data : []);
       alert('Paragon zapisany!');
     } catch (error) {
       console.error('Błąd przy zapisywaniu paragonu:', error);
