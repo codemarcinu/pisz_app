@@ -1,41 +1,46 @@
-from flask import Blueprint, request, jsonify
-from .models import Paragony
-from . import db
-from datetime import datetime
-from sqlalchemy.exc import SQLAlchemyError
- 
-main_bp = Blueprint('main', __name__)
- 
-@main_bp.route('/paragony', methods=['POST'])
+from flask import Blueprint, jsonify, request
+from ..models import Paragony, Produkty
+from .. import db
+
+paragony_bp = Blueprint('paragony', __name__)
+produkty_bp = Blueprint('produkty', __name__)
+
+@paragony_bp.route('/paragony', methods=['POST'])
 def dodaj_paragon():
     try:
         data = request.get_json()
-        nowy_paragon = Paragony(
-            data=datetime.strptime(data['data'], '%Y-%m-%d'),
+        new_paragon = Paragony(
+            data=data['data'],
             sklep=data['sklep'],
-            laczna_cena=float(data['cena']),
-            rabat=float(data.get('rabat', 0))
+            cena=data['cena']
         )
-        db.session.add(nowy_paragon)
+        db.session.add(new_paragon)
         db.session.commit()
-        return jsonify({'message': 'Paragon dodany pomyślnie', 'id': nowy_paragon.id}), 201
-    except (ValueError, KeyError) as e:
+        return jsonify({"message": "Paragon dodany"}), 201
+    except Exception as e:
         db.session.rollback()
-        return jsonify({'error': 'Nieprawidłowe dane wejściowe'}), 400
-    except SQLAlchemyError as e:
-        db.session.rollback()
-        return jsonify({'error': 'Błąd bazy danych'}), 500
+        return jsonify({"error": str(e)}), 500
 
-@main_bp.route('/paragony', methods=['GET'])
+@paragony_bp.route('/paragony', methods=['GET'])
 def lista_paragonow():
     try:
         paragony = Paragony.query.order_by(Paragony.data.desc()).all()
         return jsonify([{
-            'id': p.id,
-            'data': p.data.isoformat(),
-            'sklep': p.sklep,
-            'laczna_cena': p.laczna_cena,
-            'rabat': p.rabat
-        } for p in paragony]), 200
-    except SQLAlchemyError as e:
-        return jsonify({'error': 'Błąd bazy danych'}), 500
+            "id": p.id,
+            "data": p.data.isoformat(),
+            "sklep": p.sklep,
+            "cena": p.cena
+        } for p in paragony])
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@produkty_bp.route('/produkty', methods=['GET'])
+def lista_produktow():
+    try:
+        produkty = Produkty.query.all()
+        return jsonify([{
+            "id": p.id,
+            "nazwa": p.nazwa
+        } for p in produkty])
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500

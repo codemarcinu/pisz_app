@@ -1,2 +1,59 @@
-2025-01-25 23:23:52,472 INFO: Uruchomienie aplikacji Zakupy [in /home/marcin/Dokumenty/pisz_app/zakupy_app/__init__.py:46]
-2025-01-25 23:35:25,630 INFO: Uruchomienie aplikacji Zakupy [in /home/marcin/Dokumenty/pisz_app/zakupy_app/__init__.py:50]
+2025-01-26 10:02:39,308 ERROR: Exception on /paragony [GET] [in /home/marcin/Dokumenty/pisz_app/.venv/lib64/python3.13/site-packages/flask/app.py:875]
+Traceback (most recent call last):
+  File "/home/marcin/Dokumenty/pisz_app/.venv/lib64/python3.13/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/marcin/Dokumenty/pisz_app/.venv/lib64/python3.13/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/marcin/Dokumenty/pisz_app/.venv/lib64/python3.13/site-packages/flask_cors/extension.py", line 194, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "/home/marcin/Dokumenty/pisz_app/.venv/lib64/python3.13/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/marcin/Dokumenty/pisz_app/.venv/lib64/python3.13/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/marcin/Dokumenty/pisz_app/backend/app/routes/routes.py", line 58, in lista_paragonow
+    paragony = Paragony.query.order_by(Paragony.data.desc()).all()
+  File "/home/marcin/Dokumenty/pisz_app/.venv/lib64/python3.13/site-packages/sqlalchemy/orm/query.py", line 2699, in all
+    return self._iter().all()  # type: ignore
+           ~~~~~~~~~~^^
+  File "/home/marcin/Dokumenty/pisz_app/.venv/lib64/python3.13/site-packages/sqlalchemy/orm/query.py", line 2853, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+        params,
+        ^^^^^^^
+        execution_options={"_sa_orm_load_options": self.load_options},
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/marcin/Dokumenty/pisz_app/.venv/lib64/python3.13/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/marcin/Dokumenty/pisz_app/.venv/lib64/python3.13/site-packages/sqlalchemy/orm/session.py", line 2239, in _execute_internal
+    bind = self.get_bind(**bind_arguments)
+  File "/home/marcin/Dokumenty/pisz_app/.venv/lib64/python3.13/site-packages/flask_sqlalchemy/session.py", line 53, in get_bind
+    engines = self._db.engines
+              ^^^^^^^^^^^^^^^^
+  File "/home/marcin/Dokumenty/pisz_app/.venv/lib64/python3.13/site-packages/flask_sqlalchemy/extension.py", line 690, in engines
+    raise RuntimeError(
+    ...<3 lines>...
+    )
+RuntimeError: The current Flask app is not registered with this 'SQLAlchemy' instance. Did you forget to call 'init_app', or did you create multiple 'SQLAlchemy' instances?
+2025-01-26 10:17:53,209 INFO: Uruchomienie aplikacji Zakupy [in /home/marcin/Dokumenty/pisz_app/backend/app/__init__.py:56]
+2025-01-26 10:19:50,781 INFO: Uruchomienie aplikacji Zakupy [in /home/marcin/Dokumenty/pisz_app/backend/app/__init__.py:56]
+2025-01-26 10:23:30,449 INFO: Uruchomienie aplikacji Zakupy [in /home/marcin/Dokumenty/pisz_app/backend/app/__init__.py:56]
+2025-01-26 10:24:03,914 INFO: Uruchomienie aplikacji Zakupy [in /home/marcin/Dokumenty/pisz_app/backend/app/__init__.py:56]
+2025-01-26 10:24:40,008 INFO: Uruchomienie aplikacji Zakupy [in /home/marcin/Dokumenty/pisz_app/backend/app/__init__.py:56]
+2025-01-26 10:25:06,224 INFO: Uruchomienie aplikacji Zakupy [in /home/marcin/Dokumenty/pisz_app/backend/app/__init__.py:56]
+2025-01-26 10:25:53,435 INFO: Uruchomienie aplikacji Zakupy [in /home/marcin/Dokumenty/pisz_app/backend/app/__init__.py:56]
+2025-01-26 10:31:36,429 INFO: Uruchomienie aplikacji Zakupy [in /home/marcin/Dokumenty/pisz_app/backend/app/__init__.py:56]
+2025-01-26 10:33:33,502 INFO: Uruchomienie aplikacji Zakupy [in /home/marcin/Dokumenty/pisz_app/backend/app/__init__.py:56]

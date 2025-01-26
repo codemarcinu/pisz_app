@@ -1,10 +1,15 @@
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from .config import Config, TestConfig, ProductionConfig
-from .extensions import db, migrate
+from flask_migrate import Migrate
 import logging
 from logging.handlers import RotatingFileHandler
 import os
+
+# Create the SQLAlchemy instance once
+db = SQLAlchemy()
+migrate = Migrate()
 
 def create_app(config_class=Config, test_config=None):
     app = Flask(__name__)
@@ -25,13 +30,14 @@ def create_app(config_class=Config, test_config=None):
     db.init_app(app)
     migrate.init_app(app, db)
     
-    # Upewnij się, że aplikacja jest w kontekście
+    # Import and register blueprints within app context
     with app.app_context():
+        from .routes import paragony_bp, produkty_bp
+        app.register_blueprint(paragony_bp)
+        app.register_blueprint(produkty_bp)
+        
+        # Create tables if needed
         db.create_all()
-    
-    # Rejestracja blueprintów
-    from .routes import main_bp
-    app.register_blueprint(main_bp)
     
     # Konfiguracja logowania
     if not app.debug and not app.testing:
