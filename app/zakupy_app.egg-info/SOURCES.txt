@@ -1,0 +1,9 @@
+setup.py
+routes/__init__.py
+routes/auth.py
+routes/routes.py
+zakupy_app.egg-info/PKG-INFO
+zakupy_app.egg-info/SOURCES.txt
+zakupy_app.egg-info/dependency_links.txt
+zakupy_app.egg-info/requires.txt
+zakupy_app.egg-info/top_level.txt
