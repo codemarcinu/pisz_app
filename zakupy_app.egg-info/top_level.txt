@@ -1,3 +1,0 @@
-app
-tests
-zakupy_app
