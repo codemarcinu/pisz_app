@@ -13,8 +13,15 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
 
-    # from .routes import routes_bp # Zakomentowane, blueprinty zarejestrujemy później
-    # app.register_blueprint(routes_bp)
+    from app.extensions import cors
+    cors.init_app(app)
+
+    from app.routes.paragony_bp import paragony_bp
+    from app.routes.produkty_bp import produkty_bp
+    from app.routes.auth_bp import auth_bp
+    app.register_blueprint(paragony_bp)
+    app.register_blueprint(produkty_bp)
+    app.register_blueprint(auth_bp)
 
     return app
 
